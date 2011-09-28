@@ -1,0 +1,52 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:Tweeta_ViewModel="clr-namespace:Tweeta.ViewModel"
+	mc:Ignorable="d"
+	x:Class="Tweeta.PanoramaMeControl"
+	d:DesignWidth="420" d:DesignHeight="462">
+
+	<UserControl.DataContext>
+		<Tweeta_ViewModel:PanoramaMeViewModel/>
+	</UserControl.DataContext>
+
+	<Grid x:Name="LayoutRoot" Background="Transparent">
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="0.5*" />
+				<ColumnDefinition Width="0.5*" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+            <Border
+                Width="173"
+                Height="173"
+                Background="{StaticResource PhoneSubtleBrush}" 
+                Margin="12,0,0,0" 
+                HorizontalAlignment="Left">
+			    <Image 
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Source="{Binding UserVM.ProfileURL}" />
+            </Border>
+			<TextBlock Grid.Column="1" Text="{Binding UserVM.LastTweet}" TextWrapping="Wrap" />
+			<StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+				<Button x:Name="btnMentions" 
+					Content="mentions" Style="{StaticResource EmptyButtonStyle}" 
+					HorizontalContentAlignment="Left" 
+					FontSize="{StaticResource PhoneFontSizeExtraLarge}" 
+					FontFamily="{StaticResource PhoneFontFamilyNormal}" BorderThickness="0" Margin="12,12,0,12" Foreground="#DEFFFFFF" />
+						
+				<Button x:Name="btnMessages" Content="messages" Style="{StaticResource EmptyButtonStyle}" 
+					HorizontalContentAlignment="Left" 
+					FontSize="{StaticResource PhoneFontSizeExtraLarge}" 
+					FontFamily="{StaticResource PhoneFontFamilyNormal}" Margin="12,0,0,0" Foreground="#DEFFFFFF" />
+					
+			</StackPanel>
+		</Grid>
+	</Grid>
+</UserControl>

@@ -1,0 +1,64 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Tweeta_CustomControl="clr-namespace:Tweeta.CustomControl"
+    xmlns:Tweeta_ViewModel="clr-namespace:Tweeta.ViewModel" x:Class="Tweeta.Views.LoginPopup"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <Grid x:Name="LayoutRoot">
+    	<Grid.Background>
+    		<SolidColorBrush Color="{StaticResource PhoneChromeColor}"/>
+    	</Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+    	<Grid.DataContext>
+            <Tweeta_ViewModel:TweetaBaseVM/>
+    	</Grid.DataContext>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel"
+                    Grid.Row="0"
+                    Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle"
+                       Text="{Binding AppResources.ApplicationNameUpper, Mode=OneWay}"
+                       Style="{StaticResource PhoneTextNormalStyle}" />
+            <TextBlock x:Name="PageTitle"
+                       Text="{Binding AppResources.Login, ConverterParameter=lower, Converter={StaticResource TextCaseConverter}, Mode=OneWay}"
+                       Margin="9,-7,0,0"
+                       Style="{StaticResource PhoneTextTitle1Style}" />
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel"
+              Grid.Row="1"
+              Margin="12,0,12,0">
+
+            <StackPanel>
+                <TextBlock Text="{Binding AppResources.Username, Mode=OneWay}"
+                           Margin="12,0,0,0" />
+                <Tweeta_CustomControl:CustomTextbox x:Name="txtUsername"
+                                                    TipText="{Binding AppResources.TwitterUsername, Mode=OneWay}"
+                                                    Style="{StaticResource CustomTextboxStyle}" />
+                <TextBlock Text="{Binding AppResources.Password, Mode=OneWay}"
+                           Margin="12,0,0,0" />
+                <PasswordBox x:Name="txtPassword" />
+            </StackPanel>
+			<Grid VerticalAlignment="Bottom">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width=".5*" />
+					<ColumnDefinition Width=".5*" />
+				</Grid.ColumnDefinitions>
+				<Button x:Name="btnLogin" Grid.Column="0" Content="{Binding AppResources.Login, ConverterParameter=lower, Converter={StaticResource TextCaseConverter}, Mode=OneWay}" Click="Button_Click" />
+			</Grid>
+        </Grid>
+    </Grid>
+</UserControl>
